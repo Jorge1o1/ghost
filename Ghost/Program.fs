@@ -6,7 +6,7 @@ open Ghost.Game
 let main argv =
     let game =
         { Fragment = ""
-          State = InProgress
+          Winner = None
           CurrentPlayer = { HumanPlayer.Name = "Jorge" }
           OtherPlayer = { HumanPlayer.Name = "Valerie" } }
 

@@ -6,10 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="Model.fs" />
+    <Compile Include="Game.fs" />
     <Compile Include="HumanPlayer.fs" />
     <Compile Include="TriePlayer.fs" />
-    <Compile Include="Game.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 

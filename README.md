@@ -1,2 +1,2 @@
 # ghost
-Console App to play the Ghost word game + Symbolic AI to play against in F#
+Console App to play the Ghost word game + Symbolic AI to play against. Written in F#

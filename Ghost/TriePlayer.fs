@@ -1,7 +1,7 @@
 namespace Ghost
 
 module TriePlayer =
-    open Ghost.Model
+    open Ghost.Game
 
     type TriePlayer =
         { Name: string }

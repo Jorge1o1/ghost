@@ -3,7 +3,7 @@ namespace Ghost
 module HumanPlayer =
     open System
     open System.Text.RegularExpressions
-    open Ghost.Model
+    open Ghost.Game
 
     type HumanPlayer =
         { Name: string }
@@ -13,7 +13,7 @@ module HumanPlayer =
             let input = Console.ReadLine()
 
             match input.ToUpper() with
-            | x when Regex.Match(x, "^[A-Z]$").Success -> Letter(x)
+            | x when Regex.Match(x, "^[A-Z]$").Success -> AddLetter(x)
             | "CHALLENGE" -> Challenge
             | _ ->
                 printfn "%s: Bad Input" this.Name
