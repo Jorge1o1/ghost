@@ -13,8 +13,9 @@ module Game =
           CurrentPlayer: IPlayer
           OtherPlayer: IPlayer }
 
-    let wordlist =
-        lazy (Set(System.IO.File.ReadLines("corpus.txt")))
+    let corpusTrie =
+        let wordlist = Set(System.IO.File.ReadLines("data/corpus.txt"))
+        Set.foldBack Trie.insert wordlist Trie.empty 
 
     let addLetter state letter =
         { state with
@@ -23,29 +24,31 @@ module Game =
               OtherPlayer = state.CurrentPlayer }
 
     let challenge state =
-        match wordlist.Value.Contains(state.Fragment) with
-        | true ->
-            printf "%s IS a word! " state.Fragment
-            { state with
-                  Winner = Some(state.CurrentPlayer) }
-        | false ->
-            printf "%s IS NOT a word! " state.Fragment
+        if Trie.isValidFragment state.Fragment corpusTrie then
+            printf "%s IS a valid fragment! " state.Fragment
             { state with
                   Winner = Some(state.OtherPlayer) }
+        else
+            printf "%s IS NOT a valid fragment! " state.Fragment
+            { state with
+                  Winner = Some(state.CurrentPlayer) }        
+    
+    let isLegal move state =
+        match move with
+        | AddLetter _ -> true
+        | Challenge -> state.Fragment.Length > 3
 
     let rec advance state =
         let move = state.CurrentPlayer.Prompt(state.Fragment)
-
-        let nextState =
-            match move with
-            | AddLetter l -> addLetter state l
-            | Challenge -> 
-                if state.Fragment.Length >= 3 then
-                    challenge state
-                else
-                    printfn "You can't challenge until 3 letters have been written"
-                    state
+        if not (isLegal move state) then
+            printfn "That move is not legal."
+            advance state 
+        else 
+            let nextState =
+                match move with
+                | AddLetter l -> addLetter state l
+                | Challenge -> challenge state
         
-        match nextState.Winner with
-        | None -> advance nextState
-        | Some(winner) -> winner
+            match nextState.Winner with
+            | None -> advance nextState
+            | Some(winner) -> winner

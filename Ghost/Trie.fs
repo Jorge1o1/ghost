@@ -3,8 +3,6 @@ namespace Ghost
 module Trie = 
     type Node = { word: string option
                   children: Map<char, Node> }
-    
-    // let wordlist = lazy (Set(System.IO.File.ReadLines("data/corpus.txt")))
 
     /// An empty word Trie    
     let empty = { word = None; children = Map.empty}  

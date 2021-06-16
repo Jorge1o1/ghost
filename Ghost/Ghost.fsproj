@@ -6,8 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="Game.fs" />
     <Compile Include="Trie.fs" />
+    <Compile Include="Game.fs" />
     <Compile Include="HumanPlayer.fs" />
     <Compile Include="TriePlayer.fs" />
     <Compile Include="Program.fs" />
