@@ -7,8 +7,8 @@ let main argv =
     let game =
         { Fragment = ""
           Winner = None
-          CurrentPlayer = { HumanPlayer.Name = "Jorge" }
-          OtherPlayer = { AIPlayer.Name = "Valerie" } }
+          CurrentPlayer = { AIPlayer.Name = "QT-1" }
+          OtherPlayer = { HumanPlayer.Name = "Jorge" } }
 
     printfn "To play: Either write a letter or write the word CHALLENGE"
     let winner = loop game

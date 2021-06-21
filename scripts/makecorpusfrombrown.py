@@ -1,5 +1,5 @@
 MIN_LETTERS = 3
-TOP_N = 1000
+TOP_N = 5000
 
 def get_count_from_line(line):
     parts = line.split()
