@@ -1,5 +1,5 @@
 open Ghost.HumanPlayer
-open Ghost.TriePlayer
+open Ghost.AIPlayer
 open Ghost.Game
 
 [<EntryPoint>]
@@ -8,10 +8,10 @@ let main argv =
         { Fragment = ""
           Winner = None
           CurrentPlayer = { HumanPlayer.Name = "Jorge" }
-          OtherPlayer = { HumanPlayer.Name = "Valerie" } }
+          OtherPlayer = { AIPlayer.Name = "Valerie" } }
 
     printfn "To play: Either write a letter or write the word CHALLENGE"
-    let winner = advance game
+    let winner = loop game
     printfn "Congratulations %s!" winner.Name
     1
 

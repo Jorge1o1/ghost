@@ -8,8 +8,8 @@ module HumanPlayer =
     type HumanPlayer =
         { Name: string }
 
-        member this.Prompt(fragment) =
-            printf "%s : %s : " this.Name fragment
+        member this.Prompt(state) =
+            printf "%s : %s : " this.Name state.Fragment
             let input = Console.ReadLine()
 
             match input.ToUpper() with
@@ -17,8 +17,8 @@ module HumanPlayer =
             | "CHALLENGE" -> Challenge
             | _ ->
                 printfn "%s: Bad Input" this.Name
-                this.Prompt(fragment)
+                this.Prompt(state)
 
         interface IPlayer with
             member this.Name = this.Name
-            member this.Prompt(fragment) = this.Prompt(fragment)
+            member this.Prompt(state) = this.Prompt(state)
